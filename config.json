@@ -1,0 +1,15 @@
+{
+    "prefix": "+",
+    "ipinfo": "off",
+    "spammp": "on",
+    "vpn_check": "off",
+    "tor_check": "on",
+    "clear": "on",
+    "clearall": "on",
+    "hash": "on",
+    "b64": "on",
+    "rot13": "on",
+    "morse": "off",
+    "subdomain": "off",
+    "port_scan": "off"
+}
