@@ -3,62 +3,53 @@
 S€lfB0t is a Discord self-bot developed in Python using discord.py.
 It provides various utilities such as message management, encoding tools, IP lookup, VPN/Tor detection, subdomain enumeration, and basic port scanning.
 
-⚠️ Warning: This project uses a Discord self-bot, which is against Discord Terms of Service.
-Use it at your own risk. The author is not responsible for any sanctions applied to your account.
+⚠️ Warning: This project does not comply with Discord's TOS. I am not responsible in case of account deactivation or ban. I still try to minimize the risks.
 
-✨ Features
-🧹 Message Management
+🔧 Features
+-------------------------------------------
+💬 Message Management
 
-clear – Delete a specific number of messages
+clear - Delete a certain number of messages in a channel/DM
 
-clearall – Delete all messages in a channel or DM
+clearall - Delete all your messages in a channel or private discussion
 
-spam_dm – Send a message multiple times
+spam - Spam a number of messages in a private discussion or channel
+
+pic - Get the avatar URL of a user
 
 🔐 Encoding & Utilities
 
-hash – SHA-256 hashing
+hash – Hash a text in SHA-256 
 
-b64 – Base64 encode / decode
+b64 – Encode or decode a text in Base64
 
 rot13 – ROT13 cipher
 
-morse – Morse code conversion
+morse – Convert a text to morse code
 
 🌐 Network & OSINT Tools
 
-ipinfo – Get IP address information
+ipinfo – Retrieve information from an IP address
 
-vpn_check – Detect if an IP is likely a VPN/Proxy
+vpn_check – Detect if an IP address is under VPN
 
-tor_check – Check if you are using Tor
+subdomain – See all subdomains of a website
 
-subdomain – Subdomain enumeration via crt.sh
+port_scan – TCP port scanner
 
-port_scan – Basic TCP port scanner
-
+-------------------------------------------
 📦 Requirements
 
-Python 1.7.3
+Python 3.0+
 
-A Discord user token (not a bot token)
+Run the commands:
+      pip install -r requirements.txt
 
-Python Dependencies
-
-Install all required packages using:
-
-pip install -r requirements.txt
-
-
-Required libraries include:
-
-discord.py
-
-aiohttp
+-------------------------------------------
 
 ⚙️ Configuration
 
-The bot uses a config.json file.
+The bot uses a **config.json** file
 
 Example:
 
@@ -67,7 +58,6 @@ Example:
   "ipinfo": "on",
   "spammp": "on",
   "vpn_check": "on",
-  "tor_check": "on",
   "clear": "on",
   "clearall": "on",
   "hash": "on",
@@ -75,18 +65,19 @@ Example:
   "rot13": "on",
   "morse": "on",
   "subdomain": "on",
-  "port_scan": "on"
+  "port_scan": "on",
+  "pic": "on"
 }
 
 
-You can configure the prefix and toggle features directly from the console menu.
+You can configure the prefix using option 2 in the main menu.
 
-▶️ Usage
+-------------------------------------------
 
-Run the script:
+🤖 Usage
 
-python main.py
-
+Run the command:
+        python main.py
 
 You will see a console menu:
 
@@ -108,16 +99,18 @@ Command	Description
 ping	Check bot status
 clear <number>	Delete a number of messages
 clearall	Delete all messages
-spam_dm <times> <message>	Spam a message
+spam <times> <message>	Spam a message
+pic [user]	Get avatar URL (yours or mentioned user's)
 hash <text>	SHA-256 hash
 b64 encode/decode <text>	Base64 encoding
 rot13 <text>	ROT13 cipher
 morse <text>	Morse code
 ipinfo <ip>	IP information
 vpn_check [ip]	VPN detection
-tor_check	Tor detection
 subdomain <domain>	Subdomain enumeration
 port_scan <ip> <ports>	Port scan (comma-separated ports)
+
+-------------------------------------------
 
 🚨 Disclaimer
 
@@ -128,9 +121,9 @@ For educational purposes only
 Do NOT use on accounts you care about
 
 The developer is not responsible for misuse
+-------------------------------------------
 
 👤 Author
 
 Corbo0Dev
 🔗 GitHub: https://github.com/Corbo0Dev
-

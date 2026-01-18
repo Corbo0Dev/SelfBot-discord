@@ -109,10 +109,6 @@ async def ping(ctx):
     await ctx.message.delete()
     await ctx.send("Pong")
 
-@bot.command()
-async def spam_dm(ctx, times: int, *, message: str):
-    for _ in range(times):
-        await ctx.send(message)
 
 @bot.command()
 async def clear(ctx, number: int):
@@ -156,7 +152,9 @@ async def help(ctx):
 - {PREFIX}morse <text> - Morse Code
 - {PREFIX}ipinfo <ip> - IP information
 - {PREFIX}vpn_check [ip] - Check if detected on VPN
-- {PREFIX}tor_check - Check if detected on Tor"""
+- {PREFIX}subdomain - Subdomain enumeration
+- {PREFIX}port_scan - Port scan (comma-separated ports)
+- {PREFIX}pic - """
     await ctx.message.delete()
     await ctx.send(message)
 
@@ -262,24 +260,7 @@ async def vpn_check(ctx, ip: str = None):
         except Exception as e:
             await ctx.send(f"Error: {e}")
 
-@bot.command()
-async def tor_check(ctx):
-    await ctx.message.delete()
-    await ctx.send("Tor check in progress...")
-    
-    async with aiohttp.ClientSession() as session:
-        try:
-            async with session.get("https://check.torproject.org/api/ip") as resp:
-                data = await resp.json()
-                is_tor = data.get('is_tor', False)
-                
-                message = f"""**Tor Check:**
-- Tor Detected: {'YES' if is_tor else 'NO'}
-- IP: {data.get('ip')}"""
-                
-                await ctx.send(message)
-        except Exception as e:
-            await ctx.send(f"Error: {e}")
+
 
 @bot.command()
 async def subdomain(ctx, domain: str):
@@ -346,6 +327,38 @@ async def port_scan(ctx, ip: str, *, ports: str):
         await ctx.send(report)
     except Exception as e:
         await ctx.send(f"Error: {e}")
+
+@bot.command()
+async def pic(ctx, user: discord.User = None):
+    await ctx.message.delete()
+    
+    if user is None:
+        user = ctx.author
+    
+    avatar_url = str(user.avatar_url)
+    await ctx.send(f"**{user}**:\n{avatar_url}")
+
+@bot.command()
+async def spam(ctx, times: int, *, message: str):
+    await ctx.message.delete()
+    if times > 100:
+        await ctx.send("Limit: 100 message", delete_after=5)
+        return
+    
+    if times < 1:
+        await ctx.send("The number must be greater than 0", delete_after=5)
+        return
+    
+    for i in range(times):
+        try:
+            await ctx.send(message)
+        except discord.errors.Forbidden:
+            await ctx.send("Permissions denied", delete_after=5)
+            break
+        except discord.errors.HTTPException as e:
+            await ctx.send(f"Error : {e}", delete_after=5)
+            break
+    
 
 menu()
 
